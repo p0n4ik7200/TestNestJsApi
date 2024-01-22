@@ -17,7 +17,7 @@ MYSQL_PASSWORD: my_password
 $ npm install
 ```
 
-## Running the app
+## Local running the app
 
 ```bash
 # development
@@ -30,9 +30,19 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Docker running the app
+
+```bash
+# download app
+docker compose pull
+
+# start app
+docker compose up -d
+```
+
 ## OpenAPI (Swagger)
 
-After running the app, documentation on api methods is available at the following path: http://localhost:3000/swagger (by default)
+After running the app, documentation on api methods is available at the following path: http://localhost/swagger (in the docker)
 
 ## Set default admin
 
