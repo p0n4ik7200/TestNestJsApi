@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  app:
+    image: p0n4ik/testnestjsapi
+    restart: always
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USERNAME: my_user
+      DB_PASSWORD: my_password
+      DB_DATABASE: my_database
+      JWT_SECRET: 4b2e7526-42dc-40c5-9fa3-a7bcd2d3b23c
+    ports:
+      - "80:3000"
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: mysql:8.0
+    container_name: db
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: my_root_password
+      MYSQL_DATABASE: my_database
+      MYSQL_USER: my_user
+      MYSQL_PASSWORD: my_password
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
